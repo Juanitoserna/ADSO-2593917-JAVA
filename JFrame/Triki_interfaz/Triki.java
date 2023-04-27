@@ -29,7 +29,6 @@ public class Triki extends JFrame {
         container.setBackground(Color.decode("#46F6E9"));
         arreglo_etiquetas = new JLabel [3][3];
         arreglo_texto = new char[3][3];
-
         for (int i = 0; i < arreglo_etiquetas.length; i++) {
             for (int j = 0; j < arreglo_etiquetas.length; j++) {
                 arreglo_texto[i][j] = '-';
@@ -45,6 +44,16 @@ public class Triki extends JFrame {
                 arreglo_etiquetas[i][j].setOpaque(true);
                 arreglo_etiquetas[i][j].setBackground(Color.decode("#27D0F2"));
                 container.add(arreglo_etiquetas[i][j] ,restriccion);
+
+                final int fila = i;
+                final int columna = j;
+                MouseAdapter evento = new MouseAdapter() {
+                    @Override
+                    public void mouseClicked(MouseEvent e){
+                        marcarCasilla(fila, columna);
+                    }
+                };
+                this.arreglo_etiquetas[i][j].addMouseMotionListener(evento);
             }
         }
 
@@ -55,5 +64,15 @@ public class Triki extends JFrame {
 		setVisible(true);
 		revalidate();
 		repaint();
+
+        imprimirTablero();
+    }
+
+    public void imprimirTablero(){
+        for (int i = 0; i < arreglo_etiquetas.length; i++) {
+            for (int j = 0; j < arreglo_etiquetas.length; j++) {
+            
+            }
+        }
     }
 }
