@@ -71,7 +71,7 @@ public class Triki extends JFrame {
     public void imprimirTablero(){
         for (int i = 0; i < arreglo_etiquetas.length; i++) {
             for (int j = 0; j < arreglo_etiquetas.length; j++) {
-            
+                
             }
         }
     }
