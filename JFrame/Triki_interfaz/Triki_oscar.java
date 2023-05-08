@@ -63,14 +63,19 @@ public class Triki_oscar extends JFrame{
 				final int fila = i;
                 final int columna = j;
 				
-				imprimirRandom();
-				MouseAdapter evento = new MouseAdapter(){
-					@Override
-					public void mouseClicked(MouseEvent e) {
-						marcarCasillaUsuario(fila , columna);
-					}             
-				};
-				this.tablero_lbls[i][j].addMouseListener(evento);
+				if (this.turno == 1) {
+					marcarCasillaMaquina();
+					
+				}else{
+					MouseAdapter evento = new MouseAdapter(){
+						@Override
+						public void mouseClicked(MouseEvent e) {
+							marcarCasillaUsuario(fila , columna);
+						}             
+					};
+					this.tablero_lbls[i][j].addMouseListener(evento);
+
+				}
 				
 				
                 
@@ -100,25 +105,27 @@ public class Triki_oscar extends JFrame{
 		revalidate();
 	}
 
-	public void imprimirRandom(){
+	public void marcarCasillaMaquina(){
 		//poner el mach ramdon para el primer turno de la maquina 
-		if (this.turno == 1) {
-			
-			if (this.pos_temporal == 1) {
-				int aleatorio_fila = (int)(Math.random()*3);
-				int aleatorio_columna = (int)(Math.random()*3);
-				this.turno = (this.turno%2)+1;
-				tablero_interno[aleatorio_fila][aleatorio_columna] = '0';
-				imprimirTablero();
+		if (this.pos_temporal == 1) {
+			int aleatorio_fila = (int)(Math.random()*3);
+			int aleatorio_columna = (int)(Math.random()*3);
+			this.turno = (this.turno%2)+1;
+			tablero_interno[aleatorio_fila][aleatorio_columna] = '0';
+			pos_temporal++;
+			imprimirTablero();
 					
 				
 				
-			}
+		}else{
+
 		}
+		
 	}
 	public void marcarCasillaUsuario(int fila , int columna){
 		if( this.tablero_interno[fila][columna]=='-'){
-			char ficha = (this.turno==2)? 'X':'0';
+			char ficha = 'X';
+			// char ficha = (this.turno==2)? 'X':'0';
 			this.tablero_interno[fila][columna] = ficha;
 			this.tablero_lbls[fila][columna].setForeground( (this.turno==1)? Color.black:Color.red );
 			this.turno = (this.turno%2)+1;
