@@ -75,4 +75,6 @@ public class Triki extends JFrame {
             }
         }
     }
+
+    
 }

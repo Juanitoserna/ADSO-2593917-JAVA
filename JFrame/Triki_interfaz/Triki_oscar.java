@@ -62,15 +62,22 @@ public class Triki_oscar extends JFrame{
 
 				final int fila = i;
                 final int columna = j;
-                MouseAdapter evento = new MouseAdapter(){
-                    @Override
-	                public void mouseClicked(MouseEvent e) {
-	                    marcarCasilla( fila, columna);
-	                }             
-                };
-                this.tablero_lbls[i][j].addMouseListener(evento);
+				
+				imprimirRandom();
+				MouseAdapter evento = new MouseAdapter(){
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						marcarCasillaUsuario(fila , columna);
+					}             
+				};
+				this.tablero_lbls[i][j].addMouseListener(evento);
+				
+				
+                
+                
 			}
 		}
+		
 		add(contPrincipal);
 		setTitle("Tres en Linea");
 		setSize(400,400);
@@ -83,8 +90,8 @@ public class Triki_oscar extends JFrame{
 	}
 
 	public void imprimirTablero(){
-		this.etq_usuario.setText( (this.turno==1)? "Usuario":"IA" );
-		this.etq_usuario.setForeground( (this.turno==1)? Color.black:Color.red );
+		this.etq_usuario.setText( (this.turno==1)? "IA":"Usuario" );
+		this.etq_usuario.setForeground( (this.turno==1)? Color.red:Color.black );
 		for (int i=0; i<tablero_interno.length; i++) {
 			for (int j=0; j<tablero_interno[i].length; j++) {
 				this.tablero_lbls[i][j].setText( String.valueOf(this.tablero_interno[i][j]) );
@@ -93,44 +100,32 @@ public class Triki_oscar extends JFrame{
 		revalidate();
 	}
 
-	public void marcarCasilla(int fila, int columna){
+	public void imprimirRandom(){
 		//poner el mach ramdon para el primer turno de la maquina 
 		if (this.turno == 1) {
-			char ficha = 'X';
-			this.tablero_interno[fila][columna] = ficha;
-			this.turno = (this.turno%2)+1;
-			this.imprimirTablero();
-		}else{
+			
 			if (this.pos_temporal == 1) {
-				boolean encontrado = true ;
-
-				while (encontrado) {
-					int cont = 1 ;
-					int aleatorio = (int)(Math.random()*9);
-					for (int i = 0; i < tablero_interno.length; i++) {
-						for (int j = 0; j < tablero_interno.length; j++) {
-							if (tablero_interno[i][j] == 'x') {
-								System.out.print("X-- enontrada" +i +j);
-							}
-						}
-					}
-				}
+				int aleatorio_fila = (int)(Math.random()*3);
+				int aleatorio_columna = (int)(Math.random()*3);
+				this.turno = (this.turno%2)+1;
+				tablero_interno[aleatorio_fila][aleatorio_columna] = '0';
+				imprimirTablero();
+					
 				
 				
 			}
 		}
-
-
-		// if( this.tablero_interno[fila][columna]=='-'){
-		// 	char ficha = (this.turno==1)? 'X':'0';
-		// 	this.tablero_interno[fila][columna] = ficha;
-		// 	this.tablero_lbls[fila][columna].setForeground( (this.turno==1)? Color.black:Color.red );
-		// 	this.turno = (this.turno%2)+1;
-		// 	this.imprimirTablero();
-		// }else{
-		// 	System.out.println("La Posicion es invalida.");
-		// }
-
+	}
+	public void marcarCasillaUsuario(int fila , int columna){
+		if( this.tablero_interno[fila][columna]=='-'){
+			char ficha = (this.turno==2)? 'X':'0';
+			this.tablero_interno[fila][columna] = ficha;
+			this.tablero_lbls[fila][columna].setForeground( (this.turno==1)? Color.black:Color.red );
+			this.turno = (this.turno%2)+1;
+			this.imprimirTablero();
+		}else{
+			System.out.println("La Posicion es invalida.");
+		}
 	}
 
 
