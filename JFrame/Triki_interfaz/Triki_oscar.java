@@ -64,18 +64,22 @@ public class Triki_oscar extends JFrame{
                 final int columna = j;
 				
 				if (this.turno == 1) {
-					marcarCasillaMaquina();
-					
-				}else{
 					MouseAdapter evento = new MouseAdapter(){
 						@Override
 						public void mouseClicked(MouseEvent e) {
-							marcarCasillaUsuario(fila , columna);
+							
+							marcarCasilla(fila, columna);
 						}             
 					};
 					this.tablero_lbls[i][j].addMouseListener(evento);
-
+					
+				} else {
+					marcarCasillaMaquina();
+					
 				}
+				
+					
+			
 				
 				
                 
@@ -95,28 +99,36 @@ public class Triki_oscar extends JFrame{
 	}
 
 	public void imprimirTablero(){
-		this.etq_usuario.setText( (this.turno==1)? "IA":"Usuario" );
-		this.etq_usuario.setForeground( (this.turno==1)? Color.red:Color.black );
+		this.etq_usuario.setText( (this.turno==1)? "Usuario":"IA" );
+		this.etq_usuario.setForeground( (this.turno==1)? Color.black:Color.red );
 		for (int i=0; i<tablero_interno.length; i++) {
 			for (int j=0; j<tablero_interno[i].length; j++) {
-				this.tablero_lbls[i][j].setText( String.valueOf(this.tablero_interno[i][j]) );
+				if (this.tablero_lbls[i][j] != null) {
+					this.tablero_lbls[i][j].setText( String.valueOf(this.tablero_interno[i][j]) );
+					
+				}
 			}
 		}
 		revalidate();
 	}
 
+	public void marcarCasilla(int fila , int columna){
+		if (this.tablero_interno[fila][columna] == '-') {
+			this.turno = (this.turno%2)+1; 
+			marcarCasillaUsuario(fila, columna);
+			this.imprimirTablero();
+		}else{
+			System.out.println("La poscicon es invalida");
+		}
+	}
+
 	public void marcarCasillaMaquina(){
 		//poner el mach ramdon para el primer turno de la maquina 
 		if (this.pos_temporal == 1) {
-			int aleatorio_fila = (int)(Math.random()*3);
-			int aleatorio_columna = (int)(Math.random()*3);
-			this.turno = (this.turno%2)+1;
+			int aleatorio_fila = (int)(Math.random()*2);
+			int aleatorio_columna = (int)(Math.random()*2);
 			tablero_interno[aleatorio_fila][aleatorio_columna] = '0';
 			pos_temporal++;
-			imprimirTablero();
-					
-				
-				
 		}else{
 
 		}
@@ -128,10 +140,6 @@ public class Triki_oscar extends JFrame{
 			// char ficha = (this.turno==2)? 'X':'0';
 			this.tablero_interno[fila][columna] = ficha;
 			this.tablero_lbls[fila][columna].setForeground( (this.turno==1)? Color.black:Color.red );
-			this.turno = (this.turno%2)+1;
-			this.imprimirTablero();
-		}else{
-			System.out.println("La Posicion es invalida.");
 		}
 	}
 

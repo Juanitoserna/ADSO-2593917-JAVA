@@ -1,80 +1,150 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionListener;
 import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class Triki extends JFrame {
-    private JLabel arreglo_etiquetas[][];
-    private char arreglo_texto[][];
+public class Triki extends JFrame{
 
-    public Triki(){
+	int ganador;
+	int turno;
+	char tablero_interno [][];
+	JLabel tablero_lbls [][];
+	JLabel etq_usuario;
 
-        initComponent();
-    }
+	public Triki(){
+		this.ganador = 0;
+		this.turno = 1;
+		initComponents();
+	}
 
-    public void initComponent(){
-        Toolkit sistema = Toolkit.getDefaultToolkit();
-        Dimension tamanio = sistema.getScreenSize();
+	public void initComponents(){
 
-        setTitle("TRES EN RAYA");
-        setSize( ((int)(tamanio.width*0.2)) , ((int)(tamanio.height*0.3)));
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
+		JPanel contPrincipal = new JPanel();
+		contPrincipal.setLayout(new GridBagLayout());
+		contPrincipal.setBorder( BorderFactory.createEmptyBorder(5, 5, 5, 5) );
+		GridBagConstraints restriccion = new GridBagConstraints();
 
-        JPanel container = new JPanel();
-        container.setLayout(new GridBagLayout());
-        container.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
-        GridBagConstraints restriccion = new GridBagConstraints();
-        container.setOpaque(true);
-        container.setBackground(Color.decode("#46F6E9"));
-        arreglo_etiquetas = new JLabel [3][3];
-        arreglo_texto = new char[3][3];
-        for (int i = 0; i < arreglo_etiquetas.length; i++) {
-            for (int j = 0; j < arreglo_etiquetas.length; j++) {
-                arreglo_texto[i][j] = '-';
-                arreglo_etiquetas[i][j] = new JLabel();
-                restriccion.gridy = i;
-                restriccion.gridx = j;
-                restriccion.gridheight = 1;
-                restriccion.gridwidth = 1;
-                restriccion.weighty = 20;
-                restriccion.weightx = 20;
-                restriccion.fill = GridBagConstraints.BOTH;
-                restriccion.insets = new Insets(5, 5, 5, 5);
-                arreglo_etiquetas[i][j].setOpaque(true);
-                arreglo_etiquetas[i][j].setBackground(Color.decode("#27D0F2"));
-                container.add(arreglo_etiquetas[i][j] ,restriccion);
+		etq_usuario = new JLabel("-");
+		etq_usuario.setFont(new Font("Arial black", Font.BOLD, 30));
+		etq_usuario.setHorizontalAlignment( JLabel.CENTER );
+		restriccion.gridy = 0;
+		restriccion.gridx = 0;
+		restriccion.gridheight = 1;
+		restriccion.gridwidth = 3;
+		restriccion.weighty = 1;
+		restriccion.weightx = 3;
+		restriccion.insets = new Insets(5,5,5,5);
+		restriccion.fill = GridBagConstraints.BOTH;
+		contPrincipal.add(etq_usuario, restriccion);
 
-                final int fila = i;
+		tablero_interno = new char [3][3];
+		tablero_lbls = new JLabel [3][3];
+		for (int i=0; i<tablero_lbls.length; i++) {
+			for (int j=0; j<tablero_lbls[i].length; j++) {
+				tablero_lbls[i][j] = new JLabel();
+				tablero_interno[i][j] = '-';
+				tablero_lbls[i][j].setFont(new Font("Snap ITC",Font.BOLD,65));
+				tablero_lbls[i][j].setOpaque(true);
+				tablero_lbls[i][j].setBackground( Color.white );
+				tablero_lbls[i][j].setHorizontalAlignment( JLabel.CENTER );
+				restriccion.gridy = (i+1);
+				restriccion.gridx = j;
+				restriccion.gridheight = 1;
+				restriccion.gridwidth = 1;
+				restriccion.weighty = 1;
+				restriccion.weightx = 1;
+				restriccion.fill = GridBagConstraints.BOTH;
+				restriccion.insets = new Insets(5,5,5,5);
+				contPrincipal.add( tablero_lbls[i][j], restriccion );
+
+				final int fila = i;
                 final int columna = j;
-                MouseAdapter evento = new MouseAdapter() {
+                MouseAdapter evento = new MouseAdapter(){
                     @Override
-                    public void mouseClicked(MouseEvent e){
-                        marcarCasilla(fila, columna);
-                    }
+	                public void mouseClicked(MouseEvent e) {
+	                   if (validarCasillaVacia()) {
+                           marcarCasillaUsuario( fila, columna);
+                        
+                       }
+	                }             
                 };
-                this.arreglo_etiquetas[i][j].addMouseMotionListener(evento);
+                this.tablero_lbls[i][j].addMouseListener(evento);
+			}
+		}
+		add(contPrincipal);
+		setTitle("Tres en Linea");
+		setSize(400,400);
+		setResizable(false);
+		setLocationRelativeTo(null);
+		setDefaultCloseOperation( EXIT_ON_CLOSE );
+		setVisible(true);
+
+		imprimirTablero();
+		ganoPartida();
+	}
+
+	public void imprimirTablero(){
+		this.etq_usuario.setText( (this.turno==1)? "Usuario":"IA" );
+		this.etq_usuario.setForeground( (this.turno==1)? Color.black:Color.red );
+		for (int i=0; i<tablero_interno.length; i++) {
+			for (int j=0; j<tablero_interno[i].length; j++) {
+				this.tablero_lbls[i][j].setText( String.valueOf(this.tablero_interno[i][j]) );
+			}
+		}
+		revalidate();
+	}
+
+    public boolean validarCasillaVacia(){
+        boolean valido = false;
+        for (int i = 0; i < tablero_interno.length; i++) {
+            for (int j = 0; j < tablero_interno.length; j++) {
+                if(this.tablero_interno[i][j] == '-'){
+                    return valido = true;
+                }
+                break;
             }
         }
+        return valido;
+    }
+
+	public void marcarCasilla(int fila, int columna){
+        char ficha = (this.turno==1)? 'X':'0';
+		this.tablero_interno[fila][columna] = ficha;
+        this.tablero_lbls[fila][columna].setForeground( (this.turno==1)? Color.black:Color.red );
+        this.imprimirTablero();
+	}
+    public void marcarCasillaIA(){
+
+        if (this.tablero_interno[2][2] == 'X') {
+            this.tablero_interno[0][0] = '0'; 
+            
+        }else if (this.tablero_interno[0][2] == 'X'){
+
+        }
+
 
         
-
-        setContentPane(container);
-        setResizable(false);
-		setVisible(true);
-		revalidate();
-		repaint();
-
-        imprimirTablero();
     }
+    public void marcarCasillaUsuario(int fila , int columna){
+        if (this.tablero_interno[fila][columna] == '-') {
+            marcarCasilla(fila, columna);
+			this.turno = (this.turno%2)+1;
+            
+            if (this.turno == 2 && validarCasillaVacia()) {
+                this.marcarCasillaIA();
+    			this.turno = (this.turno%2)+1;
 
-    public void imprimirTablero(){
-        for (int i = 0; i < arreglo_etiquetas.length; i++) {
-            for (int j = 0; j < arreglo_etiquetas.length; j++) {
-                
             }
+        }else{
+            System.out.println("La poscicion es invalida ");
         }
     }
-
     
+	public void ganoPartida(){
+		if(this.tablero_interno[0][0] == 'X' && this.tablero_interno[1][0] == 'X' && this.tablero_interno[2][0] == 'X'){
+			System.out.println("Gano USu");
+
+		}
+	}
 }
