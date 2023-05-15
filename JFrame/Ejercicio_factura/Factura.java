@@ -7,6 +7,7 @@ public class Factura extends JFrame{
     //atributos
     private Persona arreglo_cliente[];
     private Persona arreglo_vendedor[];
+    private String arreglo_productos[];
     private JLabel titulo;
     private JLabel etq_cedula;
     private JTextField input_cedula;
@@ -36,7 +37,7 @@ public class Factura extends JFrame{
     public Factura( Persona[] arreglo_cliente , Persona[] arreglo_vendedor){
         this.arreglo_cliente = arreglo_cliente;
         this.arreglo_vendedor =  arreglo_vendedor;
-
+        this.arreglo_productos[0] = 
         initComponent();
     }
 
