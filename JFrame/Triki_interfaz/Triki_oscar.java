@@ -63,23 +63,18 @@ public class Triki_oscar extends JFrame{
 				final int fila = i;
                 final int columna = j;
 				
-				if (this.turno == 1) {
-					MouseAdapter evento = new MouseAdapter(){
-						@Override
-						public void mouseClicked(MouseEvent e) {
-							
-							marcarCasilla(fila, columna);
-						}             
-					};
-					this.tablero_lbls[i][j].addMouseListener(evento);
-					
-				} else {
-					marcarCasillaMaquina();
-					
-				}
 				
 					
-			
+				
+				MouseAdapter evento = new MouseAdapter(){
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						marcarCasillaUsuario(fila , columna);
+					}             
+				};
+				this.tablero_lbls[i][j].addMouseListener(evento);
+
+				
 				
 				
                 
@@ -103,45 +98,99 @@ public class Triki_oscar extends JFrame{
 		this.etq_usuario.setForeground( (this.turno==1)? Color.black:Color.red );
 		for (int i=0; i<tablero_interno.length; i++) {
 			for (int j=0; j<tablero_interno[i].length; j++) {
-				if (this.tablero_lbls[i][j] != null) {
-					this.tablero_lbls[i][j].setText( String.valueOf(this.tablero_interno[i][j]) );
-					
-				}
+				this.tablero_lbls[i][j].setText( String.valueOf(this.tablero_interno[i][j]) );	
 			}
 		}
 		revalidate();
 	}
 
-	public void marcarCasilla(int fila , int columna){
-		if (this.tablero_interno[fila][columna] == '-') {
-			this.turno = (this.turno%2)+1; 
-			marcarCasillaUsuario(fila, columna);
-			this.imprimirTablero();
-		}else{
-			System.out.println("La poscicon es invalida");
-		}
-	}
-
 	public void marcarCasillaMaquina(){
-		//poner el mach ramdon para el primer turno de la maquina 
-		if (this.pos_temporal == 1) {
-			int aleatorio_fila = (int)(Math.random()*2);
-			int aleatorio_columna = (int)(Math.random()*2);
-			tablero_interno[aleatorio_fila][aleatorio_columna] = '0';
-			pos_temporal++;
-		}else{
+		//------------ Posciciones de defensa: ------------
 
-		}
+		if (this.tablero_interno[0][0] == 'X' || this.tablero_interno[0][1] == 'X' || this.tablero_interno[0][2] == 'X' || this.tablero_interno[1][0] == 'X' || this.tablero_interno[0][2] == 'X' || this.tablero_interno[1][0] == 'X' || this.tablero_interno[1][2] == 'X' || this.tablero_interno[2][0] == 'X' || this.tablero_interno[2][1] == 'X' || this.tablero_interno[2][2] == 'X') {
+			this.tablero_interno[1][1] = '0';
+		}}else if(this.tablero_interno[0][0] == 'X' && this.tablero_interno[0][1] == 'X' && this.tablero_interno[0][2] == '-'){
+			marcarCasilla(0, 2);
+		}else if(this.tablero_interno[0][0] == 'X' && this.tablero_interno[0][2] == 'X' && this.tablero_interno[0][1] == '-'){
+			marcarCasilla(0, 1);
+		}else if(this.tablero_interno[0][2] == 'X' && this.tablero_interno[0][1] == 'X' && this.tablero_interno[0][0] == '-'){
+			marcarCasilla(0, 0);
+		}else if(this.tablero_interno[1][0] == 'X' && this.tablero_interno[1][1] == 'X' && this.tablero_interno[1][2] == '-'){
+			marcarCasilla(1, 2);
+		}else if(this.tablero_interno[1][0] == 'X' && this.tablero_interno[1][2] == 'X' && this.tablero_interno[1][1] == '-'){
+			marcarCasilla(1, 1);
+		}else if(this.tablero_interno[1][2] == 'X' && this.tablero_interno[1][1] == 'X' && this.tablero_interno[1][0] == '-'){
+			marcarCasilla(1, 0);
+		}else if(this.tablero_interno[2][0] == 'X' && this.tablero_interno[2][1] == 'X' && this.tablero_interno[2][2] == '-'){
+			marcarCasilla(2, 2);
+		}else if(this.tablero_interno[2][0] == 'X' && this.tablero_interno[2][2] == 'X' && this.tablero_interno[2][1] == '-'){
+			marcarCasilla(2, 1);
+		}else if(this.tablero_interno[2][1] == 'X' && this.tablero_interno[2][2] == 'X' && this.tablero_interno[2][0] == '-'){
+			marcarCasilla(2, 0);
+		}else if(this.tablero_interno[0][0] == 'X' && this.tablero_interno[1][0] == 'X' && this.tablero_interno[2][0] == '-'){
+			marcarCasilla(2, 0);
+		}else if(this.tablero_interno[0][0] == 'X' && this.tablero_interno[2][0] == 'X' && this.tablero_interno[1][0] == '-'){
+			marcarCasilla(1, 0);
+		}else if(this.tablero_interno[2][0] == 'X' && this.tablero_interno[1][0] == 'X' && this.tablero_interno[0][0] == '-'){
+			marcarCasilla(0, 0);
+		}else if(this.tablero_interno[0][1] == 'X' && this.tablero_interno[1][1] == 'X' && this.tablero_interno[2][1] == '-'){
+			marcarCasilla(2, 1);
+		}else if(this.tablero_interno[2][1] == 'X' && this.tablero_interno[0][1] == 'X' && this.tablero_interno[1][1] == '-'){
+			marcarCasilla(1, 1);
+		}else if(this.tablero_interno[2][1] == 'X' && this.tablero_interno[1][1] == 'X' && this.tablero_interno[0][1] == '-'){
+			marcarCasilla(0, 1);
+		}else if(this.tablero_interno[0][2] == 'X' && this.tablero_interno[1][2] == 'X' && this.tablero_interno[2][2] == '-'){
+			marcarCasilla(2, 2);
+		}else if(this.tablero_interno[0][2] == 'X' && this.tablero_interno[2][2] == 'X' && this.tablero_interno[1][2] == '-'){
+			marcarCasilla(1, 2);
+		}else if(this.tablero_interno[2][2] == 'X' && this.tablero_interno[1][2] == 'X' && this.tablero_interno[0][2] == '-'){
+			marcarCasilla(0, 2);
+		}else if(this.tablero_interno[0][0] == 'X' && this.tablero_interno[1][1] == 'X' && this.tablero_interno[2][2] == '-'){
+			marcarCasilla(2, 2);
+		}else if(this.tablero_interno[0][0] == 'X' && this.tablero_interno[2][2] == 'X' && this.tablero_interno[1][1] == '-'){
+			marcarCasilla(1, 1);
+		}else if(this.tablero_interno[1][1] == 'X' && this.tablero_interno[2][2] == 'X' && this.tablero_interno[0][0] == '-'){
+			marcarCasilla(0, 0);
+		}else if(this.tablero_interno[2][0] == 'X' && this.tablero_interno[1][1] == 'X' && this.tablero_interno[0][2] == '-'){
+			marcarCasilla(0, 2);
+		}else if(this.tablero_interno[2][0] == 'X' && this.tablero_interno[0][2] == 'X' && this.tablero_interno[1][1] == '-'){
+			marcarCasilla(1, 1);
+		}else if(this.tablero_interno[1][1] == 'X' && this.tablero_interno[0][2] == 'X' && this.tablero_interno[2][0] == '-'){
+			marcarCasilla(2, 0);
+		}else if(this.tablero_interno[2][1] == 'X' && this.tablero_interno[1][2] == 'X' && this.tablero_interno[2][2] == '-'){
+			marcarCasilla(2,2);
+		}else if(this.tablero_interno[1][0] == 'X' && this.tablero_interno[2][1] == 'X' && this.tablero_interno[2][0] == '-'){
+			marcarCasilla(2,0);
+		}else if(this.tablero_interno[1][0] == 'X' && this.tablero_interno[0][1] == 'X' && this.tablero_interno[0][0] == '-'){
+			marcarCasilla(0,0);
+		}else if(this.tablero_interno[0][1] == 'X' && this.tablero_interno[1][2] == 'X' && this.tablero_interno[0][2] == '-'){
+			marcarCasilla(0,2);
+		}else if(this.tablero_interno[1][1] == '-'){
+			marcarCasilla(1,1);
+		}else if(this.tablero_interno[1][1] == 'X' && this.tablero_interno[2][0] == 'X' && this.tablero_interno[2][2] == '-' || this.tablero_interno[1][1] == 'X' && this.tablero_interno[0][0] == 'X' && this.tablero_interno[2][2] == '-') {
+			marcarCasilla(2,2);
+		}else if(this.tablero_interno[1][1] == 'X' && this.tablero_interno[0][2] == '-'){
+			marcarCasilla(0,2);
+		}else if(this.tablero_interno[0][2] == 'X' && this.tablero_interno[2][1] == 'X' && this.tablero_interno[2][0] == '-'){
+			marcarCasilla(2,0);
+		}else if(this.tablero_interno[0][0] == 'X' && this.tablero_interno[2][1] == 'X' && this.tablero_interno[2][2] == '-'){
+			marcarCasilla(2,2);
 		
 	}
 	public void marcarCasillaUsuario(int fila , int columna){
 		if( this.tablero_interno[fila][columna]=='-'){
-			char ficha = 'X';
-			// char ficha = (this.turno==2)? 'X':'0';
+			System.out.println("Turno de el usuario: ");
+			char ficha = (this.turno==1)? 'X':'0';
 			this.tablero_interno[fila][columna] = ficha;
 			this.tablero_lbls[fila][columna].setForeground( (this.turno==1)? Color.black:Color.red );
+			this.turno = (this.turno%2)+1;
+			
+			this.imprimirTablero();
+			this.marcarCasillaMaquina();
+		}else{
+			System.out.println("La Posicion es invalida.");
 		}
 	}
-
+	
 
 }
