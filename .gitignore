@@ -1,3 +1,5 @@
 *.class
 /JFrame/proyectoFactura/nbproject/private/
 /JFrame/proyectoFactura/build/
+/JFrame/22-conexionBaseDatos/nbproject/private/
+/JFrame/22-conexionBaseDatos/build/

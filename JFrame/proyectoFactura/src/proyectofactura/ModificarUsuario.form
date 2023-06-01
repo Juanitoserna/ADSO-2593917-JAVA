@@ -23,23 +23,23 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="contentTitulo" alignment="0" max="32767" attributes="0"/>
-          <Component id="contentPrincipal" alignment="0" max="32767" attributes="0"/>
+          <Component id="contentTituloU" alignment="0" max="32767" attributes="0"/>
+          <Component id="contentPrincipalU" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <Component id="contentTitulo" min="-2" max="-2" attributes="0"/>
+              <Component id="contentTituloU" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="contentPrincipal" max="32767" attributes="0"/>
+              <Component id="contentPrincipalU" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="javax.swing.JPanel" name="contentTitulo">
+    <Container class="javax.swing.JPanel" name="contentTituloU">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="cc" red="99" type="rgb"/>
@@ -49,17 +49,17 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="etqTitulo" alignment="0" max="32767" attributes="0"/>
+              <Component id="etqTituloU" alignment="0" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="etqTitulo" alignment="0" min="-2" pref="50" max="-2" attributes="0"/>
+              <Component id="etqTituloU" alignment="0" min="-2" pref="50" max="-2" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="etqTitulo">
+        <Component class="javax.swing.JLabel" name="etqTituloU">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -67,13 +67,16 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="28" style="1"/>
             </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="0" green="0" red="0" type="rgb"/>
+            </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="MODIFICAR USUARIO"/>
+            <Property name="text" type="java.lang.String" value="Modificar Usuario"/>
           </Properties>
         </Component>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JPanel" name="contentPrincipal">
+    <Container class="javax.swing.JPanel" name="contentPrincipalU">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="cc" type="rgb"/>
@@ -85,11 +88,11 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace pref="19" max="32767" attributes="0"/>
-                  <Component id="etqCedula" min="-2" pref="76" max="-2" attributes="0"/>
+                  <Component id="etqCedulaU" min="-2" pref="76" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="campoCedula" min="-2" pref="173" max="-2" attributes="0"/>
+                  <Component id="campoCedulaU" min="-2" pref="173" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="btnRegistrar1" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnBuscarU" min="-2" max="-2" attributes="0"/>
                   <EmptySpace pref="19" max="32767" attributes="0"/>
               </Group>
               <Group type="102" alignment="0" attributes="0">
@@ -102,47 +105,47 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="103" alignment="0" groupAlignment="1" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="etqEmail" min="-2" pref="99" max="-2" attributes="0"/>
+                              <Component id="etqEmailU" min="-2" pref="99" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="campoEmail" min="-2" pref="197" max="-2" attributes="0"/>
+                              <Component id="campoEmailU" min="-2" pref="197" max="-2" attributes="0"/>
                           </Group>
                           <Group type="103" alignment="1" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="etqDireccion" min="-2" pref="99" max="-2" attributes="0"/>
+                                  <Component id="etqDireccionU" min="-2" pref="99" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="campoDireccion" min="-2" pref="197" max="-2" attributes="0"/>
+                                  <Component id="campoDireccionU" min="-2" pref="197" max="-2" attributes="0"/>
                               </Group>
                               <Group type="103" alignment="0" groupAlignment="1" attributes="0">
                                   <Group type="102" alignment="1" attributes="0">
-                                      <Component id="etqTelefono" min="-2" pref="99" max="-2" attributes="0"/>
+                                      <Component id="etqTelefonoU" min="-2" pref="99" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="campoTelefono" min="-2" pref="197" max="-2" attributes="0"/>
+                                      <Component id="campoTelefonoU" min="-2" pref="197" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="1" attributes="0">
-                                      <Component id="etqNombres" min="-2" pref="97" max="-2" attributes="0"/>
+                                      <Component id="etqNombresU" min="-2" pref="97" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="campoNombres" min="-2" pref="198" max="-2" attributes="0"/>
+                                      <Component id="campoNombresU" min="-2" pref="198" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="1" attributes="0">
-                                      <Component id="etqApellidos" min="-2" pref="99" max="-2" attributes="0"/>
+                                      <Component id="etqApellidosU" min="-2" pref="99" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="campoApellidos" min="-2" pref="197" max="-2" attributes="0"/>
+                                      <Component id="campoApellidosU" min="-2" pref="197" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                          <Component id="btnCancelar" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnCancelarU" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="btnRegistrar" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnRegistrarU" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabelU" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -152,43 +155,43 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="etqCedula" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                      <Component id="campoCedula" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
-                      <Component id="btnRegistrar1" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
+                      <Component id="etqCedulaU" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="campoCedulaU" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                      <Component id="btnBuscarU" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
-                  <Component id="jLabel1" min="-2" pref="26" max="-2" attributes="0"/>
+                  <Component id="jLabelU" min="-2" pref="26" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="etqNombres" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
-                      <Component id="campoNombres" alignment="0" min="-2" pref="31" max="-2" attributes="0"/>
+                      <Component id="etqNombresU" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="campoNombresU" alignment="0" min="-2" pref="31" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="etqApellidos" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
-                      <Component id="campoApellidos" alignment="0" min="-2" pref="31" max="-2" attributes="0"/>
+                      <Component id="etqApellidosU" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="campoApellidosU" alignment="0" min="-2" pref="31" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="etqTelefono" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
-                      <Component id="campoTelefono" alignment="0" min="-2" pref="31" max="-2" attributes="0"/>
+                      <Component id="etqTelefonoU" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="campoTelefonoU" alignment="0" min="-2" pref="31" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="etqDireccion" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
-                      <Component id="campoDireccion" alignment="0" min="-2" pref="31" max="-2" attributes="0"/>
+                      <Component id="etqDireccionU" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="campoDireccionU" alignment="0" min="-2" pref="31" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="etqEmail" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
-                      <Component id="campoEmail" alignment="0" min="-2" pref="31" max="-2" attributes="0"/>
+                      <Component id="etqEmailU" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="campoEmailU" alignment="0" min="-2" pref="31" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="btnRegistrar" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
-                      <Component id="btnCancelar" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
+                      <Component id="btnRegistrarU" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
+                      <Component id="btnCancelarU" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
               </Group>
@@ -196,7 +199,7 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="etqCedula">
+        <Component class="javax.swing.JLabel" name="etqCedulaU">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="0" green="0" red="0" type="rgb"/>
@@ -207,7 +210,7 @@
             <Property name="text" type="java.lang.String" value="Cedula:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="campoCedula">
+        <Component class="javax.swing.JTextField" name="campoCedulaU">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="14" style="0"/>
@@ -217,7 +220,7 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="etqNombres">
+        <Component class="javax.swing.JLabel" name="etqNombresU">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Yu Gothic Light" size="18" style="1"/>
@@ -226,7 +229,7 @@
             <Property name="verticalTextPosition" type="int" value="3"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="campoNombres">
+        <Component class="javax.swing.JTextField" name="campoNombresU">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="14" style="0"/>
@@ -236,7 +239,7 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="etqApellidos">
+        <Component class="javax.swing.JLabel" name="etqApellidosU">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Yu Gothic Light" size="18" style="1"/>
@@ -245,7 +248,7 @@
             <Property name="verticalTextPosition" type="int" value="3"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="campoApellidos">
+        <Component class="javax.swing.JTextField" name="campoApellidosU">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="14" style="0"/>
@@ -255,7 +258,7 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="etqTelefono">
+        <Component class="javax.swing.JLabel" name="etqTelefonoU">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Yu Gothic Light" size="18" style="1"/>
@@ -264,7 +267,7 @@
             <Property name="verticalTextPosition" type="int" value="3"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="campoTelefono">
+        <Component class="javax.swing.JTextField" name="campoTelefonoU">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="14" style="0"/>
@@ -274,7 +277,7 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="etqDireccion">
+        <Component class="javax.swing.JLabel" name="etqDireccionU">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Yu Gothic Light" size="18" style="1"/>
@@ -283,7 +286,7 @@
             <Property name="verticalTextPosition" type="int" value="3"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="campoDireccion">
+        <Component class="javax.swing.JTextField" name="campoDireccionU">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="14" style="0"/>
@@ -293,7 +296,7 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="etqEmail">
+        <Component class="javax.swing.JLabel" name="etqEmailU">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Yu Gothic Light" size="18" style="1"/>
@@ -302,7 +305,7 @@
             <Property name="verticalTextPosition" type="int" value="3"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="campoEmail">
+        <Component class="javax.swing.JTextField" name="campoEmailU">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="14" style="0"/>
@@ -312,7 +315,7 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="btnCancelar">
+        <Component class="javax.swing.JButton" name="btnCancelarU">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="cc" green="ff" red="cc" type="rgb"/>
@@ -327,10 +330,10 @@
             <Property name="focusable" type="boolean" value="false"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCancelarActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCancelarUActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="btnRegistrar">
+        <Component class="javax.swing.JButton" name="btnRegistrarU">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="cc" green="ff" red="cc" type="rgb"/>
@@ -345,10 +348,10 @@
             <Property name="focusable" type="boolean" value="false"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRegistrarActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRegistrarUActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="btnRegistrar1">
+        <Component class="javax.swing.JButton" name="btnBuscarU">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="cc" green="ff" red="cc" type="rgb"/>
@@ -363,12 +366,12 @@
             <Property name="focusable" type="boolean" value="false"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRegistrar1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBuscarUActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JSeparator" name="jSeparator1">
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel1">
+        <Component class="javax.swing.JLabel" name="jLabelU">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Yu Gothic" size="18" style="1"/>

@@ -52,6 +52,7 @@ public class Principal extends javax.swing.JFrame {
         jpanelTitulo.setBackground(new java.awt.Color(153, 204, 255));
 
         jLabel1.setFont(new java.awt.Font("Aharoni", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("MENÚ");
 
         jPanel2.setBackground(new java.awt.Color(153, 204, 255));
@@ -265,6 +266,11 @@ public class Principal extends javax.swing.JFrame {
         btnCrearProducto.setForeground(new java.awt.Color(102, 102, 102));
         btnCrearProducto.setText("Crear Producto");
         btnCrearProducto.setFocusable(false);
+        btnCrearProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCrearProductoActionPerformed(evt);
+            }
+        });
 
         btnModificarProducto.setBackground(new java.awt.Color(204, 255, 204));
         btnModificarProducto.setFont(new java.awt.Font("Arial", 2, 18)); // NOI18N
@@ -299,7 +305,7 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(btnEliminarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnModificarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCrearProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         jPanelProductoLayout.setVerticalGroup(
             jPanelProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -352,7 +358,8 @@ public class Principal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanelVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanelProducto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanelProducto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
             .addComponent(jPanelFactura, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
@@ -386,6 +393,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnModificarUsuarioActionPerformed
 
     private void btnListarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarUsuarioActionPerformed
+        System.out.println("Lista Del Usuario");
         for (int i = 0; i < this.lista_usuario.length; i++) {
             System.out.println(i+" => "+this.lista_usuario[i].getCedula()+" - "+this.lista_usuario[i].getNombres()+" "+this.lista_usuario[i].getApellidos()+" "+this.lista_usuario[i].getTelefono()+" "+this.lista_usuario[i].getDireccion()+" - "+this.lista_usuario[i].getEmail());
             if (this.lista_usuario[i] == null) {
@@ -419,6 +427,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEliminarVendedorActionPerformed
 
     private void btnListarVendedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarVendedorActionPerformed
+        System.out.println("Lista Del Vendedor");
         for (int i = 0; i < this.lista_vendedor.length; i++) {
             System.out.println(i+" => "+this.lista_vendedor[i].getCedula()+" - "+this.lista_vendedor[i].getNombres()+" "+this.lista_vendedor[i].getApellidos()+" "+this.lista_vendedor[i].getTelefono()+" "+this.lista_vendedor[i].getDireccion()+" - "+this.lista_vendedor[i].getEmail());
             if (this.lista_vendedor[i] == null) {
@@ -426,6 +435,12 @@ public class Principal extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_btnListarVendedorActionPerformed
+
+    private void btnCrearProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearProductoActionPerformed
+        CrearProducto ventana = new CrearProducto(this);
+        ventana.setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_btnCrearProductoActionPerformed
     public void initAlternComponents(){
         setLocationRelativeTo(null);
         
