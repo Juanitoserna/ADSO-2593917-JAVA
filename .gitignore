@@ -1,1 +1,3 @@
 *.class
+/JFrame/proyectoFactura/nbproject/private/
+/JFrame/proyectoFactura/build/
