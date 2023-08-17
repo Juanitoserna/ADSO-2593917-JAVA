@@ -54,4 +54,13 @@ class Login extends CI_Controller {
 			$this->load->view('Iniciar_sesion', $data);
         }
     }
+
+    public function registroUsuario(){
+		echo "Cargando vista para registrar al usuario";
+	}
+
+	public function cerrarSession(){
+		$this->session->sess_destroy();
+		redirect('Login','refresh');
+	}
 }
