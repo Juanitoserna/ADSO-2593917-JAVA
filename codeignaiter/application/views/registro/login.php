@@ -30,12 +30,12 @@
 						</div>
 					<?php } ?>
 
-					<form action="<?= base_url('index.php/Login/validarIngreso') ?>" method="POST">
+					<form action="" method="POST">
 						<label for="campo_email" class="form-label m-0"><b>E-mail:</b></label>
-						<input class="form-control <?= (isset($valueEmail) && $valueEmail!='')? 'is-valid': ((isset($errorInData))? 'is-invalid':'') ?>" id="campo_email" type="email" name="campo_email" value="<?= (isset($valueEmail))? $valueEmail : '' ?>">
+						<input class="form-control">
 
 						<label for="campo_password" class="form-label m-0 mt-3"><b>Password:</b></label>
-						<input class="form-control <?= (isset($valueEmail) && $valuePassword!='')? 'is-valid': ((isset($errorInData))? 'is-invalid':'') ?>" id="campo_password" type="password" name="campo_password" value="<?= (isset($valuePassword))? $valuePassword : '' ?>">
+						<input class="form-control ">
 
 						<div class="row m-0 mt-3 p-0 justify-content-center">
 							<div class="col-12 col-lg-6 m-0 p-0">
@@ -48,7 +48,7 @@
 						<div class="col-12 m-0 p-0">
 							<p class="m-0 p-0">
 								¿Deseas ser parte del sistema?
-								<a href="#" title="Crear Nuevo Usuario">Click aquí</a>
+								<a href="guardar" title="Crear Nuevo Usuario">Click aquí</a>
 							</p>
 						</div>
 						<div class="col-12 m-0 p-0">

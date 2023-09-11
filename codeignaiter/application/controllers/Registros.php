@@ -6,117 +6,115 @@ class Registros extends CI_Controller {
 	public function __construct(){
 		parent::__construct();
         $this->load->helper('form');
-		// $this->load->helper('url');
+		$this->load->helper('url');
         $this->load->model('Usuario');
         $this->load->database();
         
 	}
 
-    public function registrarUsuario(){
-        $this->load->view('registro/usuario');
-        //$vdata["userName"] = $vdata["email"] = $vdata["password"] = $vdata["estado"] = "";
-		// if (isset($persona_id)) {
-		// 	$persona = $this->Persona->find($persona_id);
+    // public function registrarUsuario(){
+    //     $this->load->view('registro/usuario');
+    //     $vdata["userName"] = $vdata["email"] = $vdata["password"] = $vdata["estado"] = "";
+	// 	if (isset($id)) {
+	// 		$usuario = $this->Usuario->find($id);
 
-		// 	if (isset($persona)) {
-		// 		$vdata["nombre"] = $persona->nombre;
-		// 		$vdata["apellido"] = $persona->apellido;
-		// 		$vdata["edad"] = $persona->edad;
+	// 		if (isset($usuario)) {
+	// 			$vdata["userName"] = $usuario->username;
+	// 			$vdata["email"] = $usuario->email;
+	// 			$vdata["password"] = $usuario->password;
+	// 			$vdata["estado"] = $usuario->estado;
 				
-		// 	}
-		// }
-        if($this->input->server("REQUEST_METHOD") == "POST"){ 
+	// 		}
+	// 	}
+    //     if($this->input->server("REQUEST_METHOD") == "POST"){ 
 
-            $data["userName"] = $this->input->post("userName");
-            $data["email"] = $this->input->post("email");
-            $data["password"] = $this->input->post("password");
-            $data["estado"] = $this->input->post("estado");
+    //         $data["userName"] = $this->input->post("userName");
+    //         $data["email"] = $this->input->post("email");
+    //         $data["password"] = $this->input->post("password");
+    //         $data["estado"] = $this->input->post("estado");
 
-			// $vdata["nombre"] = $this->input->post("nombre");
-            // $vdata["apellido"] = $this->input->post("apellido");
-            // $vdata["edad"] = $this->input->post("edad");
+	// 		$vdata["userName"] = $this->input->post("userName");
+    //         $vdata["email"] = $this->input->post("email");
+    //         $vdata["password"] = $this->input->post("password");
+	// 		$vdata["estado"] = $this->input->post("estado");
 
-			// if (isset($persona_id)) {
-			// 	$this->Persona->update($persona_id, $data);
-			// }else{
-			// 	$this->Persona->insert($data);
-			// }
-            if ($this->Usuario->insert($data)) {
-                $vdata['ok'] = true;
-            } else {
-                $vdata['insertError'] = true;
-            }
-		}  
-		// $this->load->view('personas/guardar', $vdata);
-    }
+	// 		if (isset($id)) {
+	// 			$this->Usuario->update($id, $data);
+	// 		}else{
+	// 			$this->Usuario->insert($data);
+	// 		}
+            
+	// 	}  
+	// 	 $this->load->view('registro/usuario', $vdata);
+    // }
 
     public function iniciarSession(){
         $this->load->view('registro/login');
     }
 
-	// public function listado()
-	// {
-	// 	$vdata["productos"] = $this->Productos->findAll();
-    //     $this->load->view('producto/listarProducto', $vdata);
-	// }
+	public function listado()
+	{
+		$vdata["usuarios"] = $this->Usuario->findAll();
+        $this->load->view('registro/listarUsuario', $vdata);
+	}
 
-	// public function guardar($producto_id = null){
-	// 	$vdata["serial"] = $vdata["nombre"] = $vdata["descripcion"] = $vdata["valor"] = $vdata["cantidad"] = "";
-	// 	if (isset($producto_id)) {
-	// 		$producto = $this->Productos->find($producto_id);
+	public function guardar($id = null){
+		$vdata["id"] = $vdata["userName"] = $vdata["email"] = $vdata["password"] = $vdata["estado"] = "";
+		if (isset($id)) {
+			$usuario = $this->Usuario->find($id);
 
-	// 		if (isset($producto)) {
-	// 			$vdata["serial"] = $producto->serial;
-	// 			$vdata["nombre"] = $producto->nombre;
-	// 			$vdata["descripcion"] = $producto->descripcion;
-	// 			$vdata["valor"] = $producto->valor;
-    //             $vdata["cantidad"] = $producto->cantidad;
-	// 		}
-	// 	}
-    //     if($this->input->server("REQUEST_METHOD")== "POST"){ 
+			if (isset($usuario)) {
+				$vdata["id"] = $usuario->id;
+				$vdata["userName"] = $usuario->username;
+				$vdata["email"] = $usuario->email;
+				$vdata["password"] = $usuario->password;
+                $vdata["estado"] = $usuario->estado;
+			}
+		}
+        if($this->input->server("REQUEST_METHOD")== "POST"){ 
 
 
-    //         $data["serial"] = $this->input->post("serial");
-    //         $data["nombre"] = $this->input->post("nombre");
-    //         $data["descripcion"] = $this->input->post("descripcion");
-    //         $data["valor"] = $this->input->post("valor");
-    //         $data["cantidad"] = $this->input->post("cantidad");
+            $data["id"] = $this->input->post("id");
+            $data["userName"] = $this->input->post("userName");
+            $data["email"] = $this->input->post("email");
+            $data["password"] = $this->input->post("password");
+            $data["estado"] = $this->input->post("estado");
 
-    //         $Vdata["serial"] = $this->input->post("serial");
-    //         $Vdata["nombre"] = $this->input->post("nombre");
-    //         $Vdata["descripcion"] = $this->input->post("descripcion");
-    //         $Vdata["valor"] = $this->input->post("valor");
-    //         $Vdata["cantidad"] = $this->input->post("cantidad");
+            $Vdata["id"] = $this->input->post("id");
+            $Vdata["userName"] = $this->input->post("userName");
+            $Vdata["email"] = $this->input->post("email");
+            $Vdata["password"] = $this->input->post("password");
+            $Vdata["estado"] = $this->input->post("estado");
 
-	// 		if (isset($producto_id)) {
-	// 			$this->Productos->update($producto_id, $data);
-	// 		}else{
-	// 			$this->Productos->insert($data);
-	// 		}
+			if (isset($id)) {
+				$this->Usuario->update($id, $data);
+			}else{
+				$this->Usuario->insert($data);
+			}
             
-	// 	}  
-    //     $this->load->view('producto/crear', $vdata);	
-	// }
+		}  
+        $this->load->view('registro/usuario', $vdata);	
+	}
 
-	// public function ver($serial = null){
-	// 	$producto = $this->Productos->find($serial);
+	public function ver($id = null){
+		$usuario = $this->Usuario->find($id);
 
-	// 	if (isset($producto)) {
-	// 		$vdata["nombre"] = $producto->nombre;
-	// 		$vdata["descripcion"] = $producto->descripcion;
-	// 		$vdata["valor"] = $producto->valor;
-	// 		$vdata["cantidad"] = $producto->cantidad;
-	// 	} else {
-	// 		$vdata["nombre"] = $vdata["descripcion"] = $vdata["valor"] = $vdata["cantidad"] = "";
-	// 	}
+		if (isset($usuario)) {
+			$vdata["userName"] = $usuario->username;
+			$vdata["email"] = $usuario->email;
+			$vdata["password"] = $usuario->password;
+			$vdata["estado"] = $usuario->estado;
+		} else {
+			$vdata["userName"] = $vdata["email"] = $vdata["password"] = $vdata["estado"] = "";
+		}
 
-	// 	$this->load->view('producto/verProducto',$vdata);
+		$this->load->view('registro/verUsuario',$vdata);
 		
-	// }
+	}
 
-    // public function borrar($serial = null)
-	// {
-	// 	$this->Productos->delete($serial);
-	// 	redirect("/producto/listarProducto");
-	// }
+    public function borrar($id = null)
+	{
+		$this->Usuario->delete($id);
+		redirect("/registro/listarUsuario");
+	}
 }

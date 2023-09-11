@@ -24,6 +24,7 @@
                 echo form_label('Nombre De Usuario', 'userName');
                 $data = [
                     'name'      => 'userName',
+                    'value' => $userName,
                     'class' => 'form-control input-lg',
                 ];
                 echo form_input($data);
@@ -36,6 +37,7 @@
                 $data = [
                     'name'  => 'email',
                     'class' => 'form-control input-lg',
+                    'value' => $email,
                     'type' => 'email',
                 ];
 
@@ -49,6 +51,7 @@
                 $data = [
                     'name'  => 'password',
                     'type'  => 'password',
+                    'value' => $password,
                     'class' => 'form-control input-lg',
                 ];
 
