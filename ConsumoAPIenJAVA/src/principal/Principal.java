@@ -41,5 +41,7 @@ public class Principal {
         deleteData.put("cedula", "102200");
         System.out.println("Consumo DELETE: " + ejemplo.consumoPOST("http://localhost/APIenPHP/Delete.php", deleteData));
         
-    }    
+        listarPersonas ventana = new listarPersonas();
+        ventana.setVisible(true);
+    }   
 }
