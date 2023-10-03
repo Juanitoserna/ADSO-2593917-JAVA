@@ -42,6 +42,5 @@ public class Principal {
         System.out.println("Consumo DELETE: " + ejemplo.consumoPOST("http://localhost/APIenPHP/Delete.php", deleteData));
         
         listarPersonas ventana = new listarPersonas();
-        ventana.setVisible(true);
     }   
 }
