@@ -1,15 +1,29 @@
 
 package principal;
 
+import Clases.ButtonEditor;
+import Clases.ButtonRenderer;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import java.awt.Button;
+import java.awt.Color;
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.EventObject;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.JTable;
+import javax.swing.table.TableColumn;
+import javax.swing.JCheckBox;
+import javax.swing.event.CellEditorListener;
+import javax.swing.table.TableCellEditor;
+import javax.swing.table.TableCellRenderer;
 
 public class listarPersonas extends javax.swing.JFrame {
     
@@ -36,18 +50,18 @@ public class listarPersonas extends javax.swing.JFrame {
         for (int i = 0; i < arregloPersonas.size(); i++) {
             Persona temp = gson.fromJson(arregloPersonas.get(i).getAsJsonObject(), Persona.class);
             listaPersona[i] = temp;
-            System.out.println(listaPersona[i].getApellidos());
         }
         
         setLocationRelativeTo(null);
         tableModel =  (DefaultTableModel) this.tablaPersonas.getModel();
+        this.tablaPersonas.getColumn("Modificar").setCellRenderer(new ButtonRenderer());
+        this.tablaPersonas.getColumn("Modificar").setCellEditor(new ButtonEditor(new JCheckBox()));
+        
+        this.tablaPersonas.getColumn("Eliminar").setCellRenderer(new ButtonRenderer());
+        this.tablaPersonas.getColumn("Eliminar").setCellEditor(new ButtonEditor(new JCheckBox()));
         
         // Llenar la tabla con los datos del arreglo
         llenarTabla();
-        
-        //setSize( Toolkit.getDefaultToolkit().getScreenSize() );
-        //setExtendedState(JFrame.MAXIMIZED_BOTH );
-        //setSize( 500, 400 );
         setVisible(true);
     }
     
@@ -60,12 +74,48 @@ public class listarPersonas extends javax.swing.JFrame {
             String telefono = listaPersona[i].getTelefono();
             String direccion = listaPersona[i].getDireccion();
             String email = listaPersona[i].getEmail();
+            JButton btnAccionModificar = new JButton("Modificar");
+            btnAccionModificar.setBackground(new Color(144,238,144));
+            btnAccionModificar.setOpaque(true);
+            
+            JButton btnAccionEliminar = new JButton("Eliminar");
+            btnAccionEliminar.setBackground(Color.RED);
+            btnAccionEliminar.setOpaque(true);
             
             final int posicion = i;
-            
-            
-            Object[] temporal = new Object[]{ cedula, nombres, apellidos, telefono, direccion, email };
+            btnAccionModificar.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    accionClickBotonModificar( listaPersona[posicion] );
+                }
+            });
+            btnAccionEliminar.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    accionClickBotonEliminar( listaPersona[posicion] );
+                }
+            });
+            Object[] temporal = new Object[]{ cedula, nombres, apellidos, telefono, direccion, email, btnAccionModificar , btnAccionEliminar };
             tableModel.addRow(temporal);
+        }
+    }
+    public void accionClickBotonModificar(Persona listaPersona){
+        UpdatePersona ventana = new UpdatePersona(this, listaPersona);
+    }
+    public void accionClickBotonEliminar(Persona temp){
+        ConsumoAPI ejemplo = new ConsumoAPI();
+        String tempCedula = String.valueOf(temp.getCedula());
+        Map<String, String> deleteData = new HashMap<>();
+        deleteData.put("cedula", tempCedula);
+        System.out.println("Consumo DELETE: " + ejemplo.consumoPOST("http://localhost/APIenPHP/Delete.php", deleteData));
+        String respuesta = ejemplo.consumoPOST("http://localhost/APIenPHP/Delete.php", deleteData);
+        JsonObject objetoJson = JsonParser.parseString(respuesta).getAsJsonObject();
+        
+        if ( objetoJson.get("status").getAsBoolean()  ) {
+            initAlternComponents();
+            
+        }else{
+            System.out.println("Error al eliminar los datos de la tabla");
         }
     }
     @SuppressWarnings("unchecked")
@@ -109,20 +159,20 @@ public class listarPersonas extends javax.swing.JFrame {
 
         tablaPersonas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Cedula:", "Nombres:", "Aplellidos:", "Telefono:", "Direccion:", "Email:"
+                "Cedula:", "Nombres:", "Aplellidos:", "Telefono:", "Direccion:", "Email:", "Modificar", "Eliminar"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Byte.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Byte.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, true, true
+                false, false, false, false, true, true, true, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -162,8 +212,7 @@ public class listarPersonas extends javax.swing.JFrame {
                         .addGap(24, 24, 24))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 842, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 842, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -201,14 +250,6 @@ public class listarPersonas extends javax.swing.JFrame {
        InsertPersona ventana = new InsertPersona(this);
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    public static void main(String args[]) {
-
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new listarPersonas().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -218,4 +259,6 @@ public class listarPersonas extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tablaPersonas;
     // End of variables declaration//GEN-END:variables
+
+   
 }

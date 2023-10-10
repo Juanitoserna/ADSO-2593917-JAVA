@@ -13,14 +13,16 @@ import java.util.Map;
  *
  * @author INSTRUCTOR
  */
-public class InsertPersona extends javax.swing.JFrame {
+public class UpdatePersona extends javax.swing.JFrame {
 
     /**
-     * Creates new form InsertPersona
+     * Creates new form UpdatePersona
      */
     listarPersonas ventana;
-    public InsertPersona(listarPersonas ventana) {
+    Persona persona;
+    public UpdatePersona(listarPersonas ventana , Persona persona) {
         this.ventana = ventana;
+        this.persona = persona;
         initComponents();
         initAlterntComponent();
     }
@@ -28,6 +30,7 @@ public class InsertPersona extends javax.swing.JFrame {
     public void initAlterntComponent(){
         setVisible(true);
         setLocationRelativeTo(null);
+        setDatos();
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -229,8 +232,15 @@ public class InsertPersona extends javax.swing.JFrame {
         getDatos();
         
     }//GEN-LAST:event_jButton1ActionPerformed
-
-
+    public void setDatos(){
+        String cedula = String.valueOf(persona.getCedula());
+        campoCedula.setText(cedula);
+        campoNombre.setText(persona.getNombres());
+        campoApellido.setText(persona.getApellidos());
+        campoDireccion.setText(persona.getDireccion());
+        campoEmail.setText(persona.getEmail());
+        campoTelefono.setText(persona.getTelefono());
+    }
     public void getDatos(){
         ConsumoAPI ejemplo = new ConsumoAPI(); 
         
@@ -242,14 +252,16 @@ public class InsertPersona extends javax.swing.JFrame {
         String telefono = campoTelefono.getText();
         
         // POST con Datos
-        Map<String, String> insertData = new HashMap<>();
-        insertData.put("cedula",   cedula);
-        insertData.put("nombres", nombre);
-        insertData.put("apellidos", apellido);
-        insertData.put("telefono", telefono);
-        insertData.put("direccion", direccion);
-        insertData.put("email", email);
-        String respuesta = ejemplo.consumoPOST("http://localhost/APIenPHP/Insert.php", insertData);
+        Map<String, String> updateData = new HashMap<>();
+        updateData.put("cedula", cedula);
+        updateData.put("nombres", nombre);
+        updateData.put("apellidos", apellido);
+        updateData.put("telefono", telefono);
+        updateData.put("direccion", direccion);
+        updateData.put("email", email);
+        System.out.println("Consumo UPDATE: " + ejemplo.consumoPOST("http://localhost/APIenPHP/Update.php", updateData));
+        
+        String respuesta = ejemplo.consumoPOST("http://localhost/APIenPHP/Update.php", updateData);
         JsonObject objetoJson = JsonParser.parseString(respuesta).getAsJsonObject();
 
         if ( objetoJson.get("status").getAsBoolean()  ) {
