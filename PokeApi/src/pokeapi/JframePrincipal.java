@@ -184,7 +184,16 @@ public class JframePrincipal extends javax.swing.JFrame {
     }
     
     public void mostrarPokemon(String url){
+        
+        
+        panelImg.removeAll();
         DatosPokemon ventana = new DatosPokemon(url);
+        ventana.setSize(panelImg.getSize());
+        ventana.setPreferredSize(panelImg.getPreferredSize());
+        panelImg.add(ventana);
+        
+        revalidate();
+        
     }
    
 
