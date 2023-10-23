@@ -177,10 +177,21 @@ public class JframePrincipal extends javax.swing.JFrame {
                 }
             });
             panelMenuLateral.add(btn);
-            
+            mostrarPrimerPokemon();
         }
         
         
+        
+    }
+    
+    public void mostrarPrimerPokemon(){
+        panelImg.removeAll();
+        DatosPokemon ventana = new DatosPokemon("https://pokeapi.co/api/v2/pokemon/1/");
+        ventana.setSize(panelImg.getSize());
+        ventana.setPreferredSize(panelImg.getPreferredSize());
+        panelImg.add(ventana);
+        
+        revalidate();
     }
     
     public void mostrarPokemon(String url){

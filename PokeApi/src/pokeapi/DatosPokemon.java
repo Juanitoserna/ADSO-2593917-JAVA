@@ -10,10 +10,13 @@ import com.google.gson.JsonParser;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.Spring;
+import javax.swing.table.DefaultTableModel;
 
 public class DatosPokemon extends javax.swing.JPanel {
 
     String url;
+    DefaultTableModel tableModel;
+    
     public DatosPokemon(String url) {
         this.url = url;
         initComponents();
@@ -47,6 +50,29 @@ public class DatosPokemon extends javax.swing.JPanel {
         Image imgRight = getToolkit().createImage(ClassLoader.getSystemResource("imagenes/icono_siguiente.png"));
         imgRight = imgRight.getScaledInstance(50, 50, Image.SCALE_SMOOTH);
         jlabelRight.setIcon(new ImageIcon(imgRight));
+        
+        llenarTabla( respuesta);
+    }
+    
+    public void llenarTabla(String respuesta){
+        int cont = 1;
+        tableModel =  (DefaultTableModel) this.jTableHabilities.getModel();
+        tableModel.setNumRows(0);
+        JsonObject objetoRespuesta = JsonParser.parseString(respuesta).getAsJsonObject();
+        JsonArray abilities = objetoRespuesta.get("abilities").getAsJsonArray();
+        
+        for (int i = 0; i < abilities.size(); i++) {
+            JsonObject temp = abilities.get(i).getAsJsonObject();
+            JsonObject ability = temp.get("ability").getAsJsonObject();
+            
+            int numero = cont;
+            String nombre = ability.get("name").getAsString();
+            String url = ability.get("url").getAsString();
+            
+            Object[] temporal = new Object[]{ numero , nombre , url };
+            tableModel.addRow(temporal);
+            cont++;
+        }
     }
 
     @SuppressWarnings("unchecked") 
@@ -62,7 +88,7 @@ public class DatosPokemon extends javax.swing.JPanel {
         jlabelLeft = new javax.swing.JLabel();
         jlabelRight = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        jTableHabilities = new javax.swing.JTable();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -82,7 +108,6 @@ public class DatosPokemon extends javax.swing.JPanel {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         nombre.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        nombre.setForeground(new java.awt.Color(0, 0, 0));
         nombre.setText("Nombre:");
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -120,7 +145,7 @@ public class DatosPokemon extends javax.swing.JPanel {
                         .addGap(98, 98, 98))))
         );
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        jTableHabilities.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -131,20 +156,17 @@ public class DatosPokemon extends javax.swing.JPanel {
                 "N", "Habilidad", "URL"
             }
         ));
-        jScrollPane1.setViewportView(jTable2);
+        jScrollPane1.setViewportView(jTableHabilities);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(126, 126, 126)
@@ -183,7 +205,7 @@ public class DatosPokemon extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
+    private javax.swing.JTable jTableHabilities;
     private javax.swing.JLabel jlabelLeft;
     private javax.swing.JLabel jlabelRight;
     private javax.swing.JLabel jlabelimg;
