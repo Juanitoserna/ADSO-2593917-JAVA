@@ -177,7 +177,6 @@ public class JframePrincipal extends javax.swing.JFrame {
                 }
             });
             panelMenuLateral.add(btn);
-            mostrarPrimerPokemon();
         }
         
         
