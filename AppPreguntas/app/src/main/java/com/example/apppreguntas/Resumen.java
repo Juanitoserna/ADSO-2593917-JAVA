@@ -1,6 +1,7 @@
 package com.example.apppreguntas;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -40,7 +41,7 @@ public class Resumen extends AppCompatActivity {
         //EXTRACION ETIQUETAS POR ID
         nombre_usuario = findViewById(R.id.nombre_usuario);
         config = new Config(getApplicationContext());
-        LinearLayout contenedor = findViewById(R.id.contenedor_cuestionarios);
+        contenedor = findViewById(R.id.contenedor_cuestionarios);
 
         //INTENCION PARA ACAMBIAR DE ACTIVITY
         Intent intencion = getIntent();
@@ -120,13 +121,16 @@ public class Resumen extends AppCompatActivity {
 
                 TextView textView = new TextView(getApplicationContext());
                 // Concatenar los datos en una cadena
+
                 String texto = "ID: " + cuestionario.getString("id") + "\n" +
                                 "CANT PREGUNTAS: " + cuestionario.getString("cant_preguntas") + "\n" +
                                 "CANT OK: " + cuestionario.getString("cant_ok") + "\n" +
                                 "CANT ERROR: " + cuestionario.getString("cant_error") + "\n" +
                                 "FECHA DE INICIO: " + cuestionario.getString("fecha_inicio") + "\n" +
                                 "FECHA DE FIN: " + cuestionario.getString("fecha_fin");
-                textView.setText(texto);
+                int color = ContextCompat.getColor(this, R.color.verde_claro);
+                textView.setBackgroundColor(color);
+                textView.append(texto);
                 contenedor.addView(textView);
 
             }
