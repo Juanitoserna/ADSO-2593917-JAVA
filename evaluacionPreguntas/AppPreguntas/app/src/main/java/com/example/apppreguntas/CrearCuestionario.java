@@ -2,6 +2,7 @@ package com.example.apppreguntas;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -64,8 +65,9 @@ public class CrearCuestionario extends AppCompatActivity {
                     System.out.println("El servidor POST responde OK");
                     JSONObject jsonObject = new JSONObject(response);
                     boolean valorBooleano = jsonObject.getBoolean("status");
+
                     if (valorBooleano){
-                        System.out.println("el consumo post a sido exitoso junto con la insercion");
+                        cambiarActivity(jsonObject);
                     }else{
                         System.out.println("Error en el estado");
                     }
@@ -91,5 +93,21 @@ public class CrearCuestionario extends AppCompatActivity {
         };
 
         queue.add(solicitud);
+    }
+
+    public void cambiarActivity(JSONObject objeto){
+        String id_cuestionario = null;
+        try {
+            id_cuestionario = objeto.getString("id_cuestionario");
+            Intent intencion = new Intent(getApplicationContext(), PreguntasCuestionarios.class);
+            intencion.putExtra("id",id_cuestionario);
+            intencion.putExtra("fecha_actual", fecha_actual);
+            startActivity(intencion);
+
+            finish();
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 }

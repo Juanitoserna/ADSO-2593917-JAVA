@@ -26,6 +26,7 @@ if (!empty($_POST["id_cuestionario"]) || !empty($_GET["id_cuestionario"])){
             $respuesta = [
                 "status" => true,
                 "message" => "DATA##OK",
+                "cant_preguntas" => sizeof($preguntas),
                 "preguntas" => $pregunta,
                 "opciones" => $opciones_resultados
             ];
